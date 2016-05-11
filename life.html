@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script>
+
+		function draw() {
+			var canvas  = document.getElementById("canvas");
+			canvas.width  = 900; 
+			canvas.height = 600; 
+				
+			var context = canvas.getContext('2d');
+			context.fillStyle   = '#eee'; 
+			context.strokeStyle = '#000'; 
+			context.fillRect(0, 0, canvas.width, canvas.height);	
+			context.lineWidth = 2; 
+			
+			context.beginPath();
+			point(context);
+			context.stroke();	
+		}
+
+		function point(context) {
+			for (var i = 0; i < 100; i++) {
+				var x = Math.floor(Math.random() * canvas.width);
+				var y = Math.floor(Math.random() * canvas.height);
+				context.strokeRect(x, y, 1, 1);
+			}
+		}
+		
+		window.onload = draw;
+
+	</script>
+</head>
+
+<body>
+	<canvas id="canvas"></canvas>
+</body> 
+</html>
