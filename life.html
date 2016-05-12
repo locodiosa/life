@@ -14,8 +14,8 @@
 		
 		function draw() {
 			var canvas  = document.getElementById("canvas");
-			canvas.width  = universe.length; 
-			canvas.height = universe[j].length; 
+			canvas.width  = universe.length * 2; 
+			canvas.height = universe[j].length * 2; 
 				
 			var context = canvas.getContext('2d');
 			context.fillStyle   = '#eee'; 
@@ -35,8 +35,8 @@
 				for (i = 0; i < universe.length; i++) {
 					
 					if (universe[i][j] == 1) {
-						var x = i;
-						var y = j;
+						var x = i * 2;
+						var y = j * 2;
 					}
 					
 					context.strokeRect(x, y, 1, 1);
