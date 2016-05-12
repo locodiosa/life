@@ -29,16 +29,22 @@
 			context.stroke();	
 		}
 
-		/*function point(context) {
+		function point(context) {
 
-			for (i = 0; (i < universe.length) && (j < universe[j].length); i++) {
-				if (universe[i][j] == 1) {
+			for (i = 0; i < universe.length; i++) {
+				if (universe[i] == 1) {
 				var x = i;
-				var y = j
+				var y = Math.floor(Math.random() * canvas.width);
 				}
 				context.strokeRect(x, y, 1, 1);
 			}
-		}*/
+			
+			/*for (j = 0; j < universe[j].length; j++) {
+				if (universe[j] == 1) {
+				var y = j;
+				}
+			}*/
+		}
 						
 		window.onload = draw;
 
