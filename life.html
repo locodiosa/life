@@ -11,9 +11,7 @@
 				universe[i][j] = Math.floor(Math.random() * 2);
 			}
 		}
-			
-		alert(universe[j].length);
-
+		
 		function draw() {
 			var canvas  = document.getElementById("canvas");
 			canvas.width  = universe.length; 
@@ -23,6 +21,7 @@
 			context.fillStyle   = '#eee'; 
 			context.strokeStyle = '#000'; 
 			context.fillRect(0, 0, canvas.width, canvas.height);	
+			context.lineWidth = 1;
 			
 			context.beginPath();
 			point(context);
@@ -30,20 +29,19 @@
 		}
 
 		function point(context) {
-
-			for (i = 0; i < universe.length; i++) {
-				if (universe[i] == 1) {
-				var x = i;
-				var y = Math.floor(Math.random() * canvas.width);
-				}
-				context.strokeRect(x, y, 1, 1);
-			}
 			
-			/*for (j = 0; j < universe[j].length; j++) {
-				if (universe[j] == 1) {
-				var y = j;
+			for (j = 0; j < universe[j].length; j++) {
+				
+				for (i = 0; i < universe.length; i++) {
+					
+					if (universe[i][j] == 1) {
+						var x = i;
+						var y = j;
+					}
+					
+					context.strokeRect(x, y, 1, 1);
 				}
-			}*/
+			}
 		}
 						
 		window.onload = draw;
