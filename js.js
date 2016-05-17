@@ -13,20 +13,25 @@ setInterval(mainloop, ONE_FRAME_TIME);
 
 var universe = [];
 
-for (var i = 0; i < 900; i++) {
-	universe[i] = [];
+
+function newUniverse(universe) {
 	
-	for (var j = 0; j < 600; j++) {
-		universe[i][j] = 0;
+	for (var i = 0; i < 900; i++) {
+		universe[i] = [];
+
+		for (var j = 0; j < 600; j++) {
+			universe[i][j] = 0;
+		}
 	}
 }
 
 
 function createUniverse(universe) {
-	for (var i = 0; i < 900; i++) {
-		universe[i] = [];
-		
-		for (var j = 0; j < 600; j++) {
+	newUniverse(universe);
+	
+	for (var i = 0; i < universe.length; i++) {
+				
+		for (var j = 0; j < universe[0].length; j++) {
 			universe[i][j] = Math.floor(Math.random() * 2);
 		}
 	}
@@ -36,7 +41,7 @@ function createUniverse(universe) {
 function draw() {
 	var canvas  = document.getElementById("canvas");
 	canvas.width  = universe.length * 2; 
-	canvas.height = universe[j].length * 2; 
+	canvas.height = universe[0].length * 2; 
 		
 	var context = canvas.getContext('2d');
 	context.fillStyle   = '#eee'; 
@@ -50,9 +55,9 @@ function draw() {
 
 function point(context,universe) {
 	
-	for (var j = 0; j < universe[j].length; j++) {
+	for (var i = 0; i < universe.length; i++) {
 		
-		for (var i = 0; i < universe.length; i++) {
+		for (var j = 0; j < universe[0].length; j++) {
 			
 			if (universe[i][j] == 1) {
 				var x = i * 2;
