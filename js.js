@@ -54,6 +54,7 @@ function draw() {
 
 
 function point(context,universe) {
+	context.fillStyle = '#000';
 	
 	for (var i = 0; i < universe.length; i++) {
 		
@@ -62,7 +63,6 @@ function point(context,universe) {
 			if (universe[i][j] == 1) {
 				var x = i * 2;
 				var y = j * 2;
-				context.fillStyle = '#000'; 
 				context.fillRect(x,y,2,2);
 			}
 		}
