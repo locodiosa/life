@@ -4,7 +4,7 @@
 var ONE_FRAME_TIME = 1000 / 60;
 
 var mainloop = function() {
-	updateGame();
+	createUniverse(universe);
 	draw();
 };
 
@@ -17,22 +17,20 @@ for (var i = 0; i < 900; i++) {
 	universe[i] = [];
 	
 	for (var j = 0; j < 600; j++) {
-		universe[i][j] = Math.floor(Math.random() * 2);
+		universe[i][j] = 0;
 	}
 }
 
-var nextUniverse = universe;
 
-for (var j = 0; j < nextUniverse[j].length; j++) {
+function createUniverse(universe) {
+	for (var i = 0; i < 900; i++) {
+		universe[i] = [];
 		
-		for (var i = 0; i < nextUniverse.length; i++) {
-			
-			if ((nextUniverse[i][j] == 1) && (nextUniverse[i+1][j+1] == 1)) {
-				nextUniverse[i][j] = 0;
-			}
+		for (var j = 0; j < 600; j++) {
+			universe[i][j] = Math.floor(Math.random() * 2);
 		}
 	}
-
+}
 
 
 function draw() {
