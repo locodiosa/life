@@ -5,6 +5,7 @@ var ONE_FRAME_TIME = 1000 / 60;
 
 var universe = newUniverse(300, 300);
 var generation = 0;
+var neighbors = 0;
 
 var mainloop = function() {
 	universe = nextUniverse(universe);
@@ -50,9 +51,11 @@ function nextUniverse(universe) {
 
 	for (i = 1; i < universe2.length-1; i++) {
 		for (j = 1; j < universe2[0].length-1; j++) {
-			if (universe[i+1][j] + universe[i+1][j-1] + universe[i+1][j+1] + universe[i][j-1] + universe[i][j+1] + universe[i-1][j-1] + universe[i-1][j] + universe[i-1][j+1] == 3) {
+			countNeighbors(universe, i, j);
+
+			if (neighbors == 3) {
 				universe2[i][j] = 1;
-			} else if (universe[i+1][j] + universe[i+1][j-1] + universe[i+1][j+1] + universe[i][j-1] + universe[i][j+1] + universe[i-1][j-1] + universe[i-1][j] + universe[i-1][j+1] == 2) {
+			} else if (neighbors == 2) {
 				universe2[i][j] = universe[i][j];
 			} else {
 				universe2[i][j] = 0;
@@ -61,6 +64,11 @@ function nextUniverse(universe) {
 	}
 
 	return universe2;
+}
+
+
+function countNeighbors(universe, x, y) {
+	neighbors = universe[x+1][y] + universe[x+1][y-1] + universe[x+1][y+1] + universe[x][y-1] + universe[x][y+1] + universe[x-1][y-1] + universe[x-1][y] + universe[x-1][y+1]
 }
 
 
