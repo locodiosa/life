@@ -48,6 +48,18 @@ function nextUniverse(universe) {
 		}
 	}
 
+	for (i = 1; i < universe2.length-1; i++) {
+		for (j = 1; j < universe2[0].length-1; j++) {
+			if (universe2[i+1][j] + universe2[i+1][j-1] + universe2[i+1][j+1] + universe2[i][j-1] + universe2[i][j+1] + universe2[i-1][j-1] + universe2[i-1][j] + universe2[i-1][j+1] == 3) {
+				universe2[i][j] = 1;
+			} else if (universe2[i+1][j] + universe2[i+1][j-1] + universe2[i+1][j+1] + universe2[i][j-1] + universe2[i][j+1] + universe2[i-1][j-1] + universe2[i-1][j] + universe2[i-1][j+1] == 2) {
+				universe2[i][j] = universe[i][j];
+			} else {
+				universe2[i][j] = 0;
+			}
+		}
+	}
+
 	return universe2;
 }
 
