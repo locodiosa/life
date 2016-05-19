@@ -5,7 +5,6 @@ var ONE_FRAME_TIME = 1000 / 60;
 
 var universe = newUniverse(300, 300);
 var generation = 0;
-var neighbors = 0;
 
 var mainloop = function() {
 	universe = nextUniverse(universe);
@@ -49,9 +48,9 @@ function nextUniverse(universe) {
 		}
 	}
 
-	for (i = 1; i < universe2.length-1; i++) {
-		for (j = 1; j < universe2[0].length-1; j++) {
-			countNeighbors(universe, i, j);
+	for (i = 0; i < universe2.length; i++) {
+		for (j = 0; j < universe2[0].length; j++) {
+			var neighbors = countNeighbors(universe, i, j);
 
 			if (neighbors == 3) {
 				universe2[i][j] = 1;
@@ -68,7 +67,19 @@ function nextUniverse(universe) {
 
 
 function countNeighbors(universe, x, y) {
-	neighbors = universe[x+1][y] + universe[x+1][y-1] + universe[x+1][y+1] + universe[x][y-1] + universe[x][y+1] + universe[x-1][y-1] + universe[x-1][y] + universe[x-1][y+1]
+	var neighbors = universe[getRolledIndex(x+1, universe.length)][y] + universe[getRolledIndex(x+1, universe.length)][getRolledIndex(y-1, universe[0].length)] + universe[getRolledIndex(x+1, universe.length)][getRolledIndex(y+1, universe[0].length)] + universe[x][getRolledIndex(y-1, universe[0].length)] + universe[x][getRolledIndex(y+1, universe[0].length)] + universe[getRolledIndex(x-1, universe.length)][getRolledIndex(y-1, universe[0].length)] + universe[getRolledIndex(x-1, universe.length)][y] + universe[getRolledIndex(x-1, universe.length)][getRolledIndex(y+1, universe[0].length)]
+	return neighbors;
+}
+
+
+function getRolledIndex(index, length) {
+	if (index < 0) {
+		return length - 1;
+	} else if (index > length - 1) {
+		return 0;
+	} else {
+		return index;
+	} 
 }
 
 
