@@ -44,12 +44,6 @@ function nextUniverse(universe) {
 
 	for (var i = 0; i < universe2.length; i++) {
 		for (var j = 0; j < universe2[0].length; j++) {
-			universe2[i][j] = universe[i][j];
-		}
-	}
-
-	for (i = 0; i < universe2.length; i++) {
-		for (j = 0; j < universe2[0].length; j++) {
 			var neighbors = countNeighbors(universe, i, j);
 
 			if (neighbors == 3) {
@@ -67,7 +61,21 @@ function nextUniverse(universe) {
 
 
 function countNeighbors(universe, x, y) {
-	var neighbors = universe[getRolledIndex(x+1, universe.length)][y] + universe[getRolledIndex(x+1, universe.length)][getRolledIndex(y-1, universe[0].length)] + universe[getRolledIndex(x+1, universe.length)][getRolledIndex(y+1, universe[0].length)] + universe[x][getRolledIndex(y-1, universe[0].length)] + universe[x][getRolledIndex(y+1, universe[0].length)] + universe[getRolledIndex(x-1, universe.length)][getRolledIndex(y-1, universe[0].length)] + universe[getRolledIndex(x-1, universe.length)][y] + universe[getRolledIndex(x-1, universe.length)][getRolledIndex(y+1, universe[0].length)]
+	var xm1 = getRolledIndex(x - 1, universe.length); 
+	var xp1 = getRolledIndex(x + 1, universe.length); 
+	var ym1 = getRolledIndex(y - 1, universe[0].length); 
+	var yp1 = getRolledIndex(y + 1, universe[0].length); 
+
+	var neighbors = 
+		universe[xp1][y] + 
+		universe[xp1][ym1] + 
+		universe[xp1][yp1] + 
+		universe[x][ym1] + 
+		universe[x][yp1] + 
+		universe[xm1][ym1] + 
+		universe[xm1][y] + 
+		universe[xm1][yp1];
+	
 	return neighbors;
 }
 
